@@ -3,6 +3,7 @@
     <string name="logo">Logo</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="action_switch_layout">Switch layout</string>
     <string name="you_know_nothing">發生錯誤囉</string>
     <string name="internet_not_connected">沒連接網路</string>
 </resources>

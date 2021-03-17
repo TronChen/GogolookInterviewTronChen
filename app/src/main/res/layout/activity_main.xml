@@ -54,6 +54,7 @@
                         android:src="@drawable/ic_grid_layout"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.IMAGE_RESULT ? View.VISIBLE : View.GONE}"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
@@ -64,7 +65,8 @@
                         android:src="@drawable/ic_linear_layout"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:visibility="@{viewModel.currentFragmentType == CurrentFragmentType.IMAGE_RESULT ? View.GONE : View.GONE}" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.appcompat.widget.Toolbar>

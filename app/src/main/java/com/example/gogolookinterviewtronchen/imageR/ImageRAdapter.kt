@@ -9,7 +9,7 @@ import com.example.gogolookinterviewtronchen.data.SearchImage
 import com.example.gogolookinterviewtronchen.databinding.ItemListImageBinding
 
 
-class ImageRAdapter(private val itemClickListener: ImageROnItemClickListener)
+class ImageRAdapter()
     : androidx.recyclerview.widget.ListAdapter<SearchImage, RecyclerView.ViewHolder>(ImageRDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -52,9 +52,5 @@ class ImageRAdapter(private val itemClickListener: ImageROnItemClickListener)
                 return ImageRViewHolder(binding)
             }
         }
-    }
-
-    class ImageROnItemClickListener(val clickListener: (searchImage: SearchImage) -> Unit ){
-        fun onItemClicked(searchImage: SearchImage) = clickListener(searchImage)
     }
 }
