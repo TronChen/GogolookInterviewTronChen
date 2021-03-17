@@ -30,18 +30,31 @@ class ImageRFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        val adapter = ImageRAdapter(ImageRAdapter.ImageROnItemClickListener{
+
+        })
+
+        binding.imageRrec.adapter = adapter
+
+
         viewModel.searchString?.let { Log.d("Tron", it) }
 
         viewModel.searchItem.observe(viewLifecycleOwner, Observer {
             Log.d("Result", it.hits.toString())
+
+            viewModel.searchImage.value = it.hits
 
             if (it.hits?.get(0) != null){
                 Log.d("Result",  it.hits?.get(0)!!.pageURL.toString())
             }
         })
 
+        viewModel.searchImage.observe(viewLifecycleOwner, Observer {
+            adapter.submitList(it)
+        })
+
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_image_r, container, false)
+        return binding.root
     }
 }

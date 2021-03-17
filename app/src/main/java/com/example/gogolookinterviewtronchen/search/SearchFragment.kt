@@ -38,6 +38,7 @@ class SearchFragment : Fragment() {
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     sendMessage(viewModel.inputString.value!!)
+                    hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
                 }
                 else -> false
@@ -58,6 +59,13 @@ class SearchFragment : Fragment() {
         // open the soft keyboard
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, InputMethodManager.HIDE_NOT_ALWAYS)
+    }
+
+    private fun hideSoftKeyboard(context: Context, view: View){
+        view.requestFocus()
+        // hide the soft keyboard
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     }
 
     private fun sendMessage(inputString: String){

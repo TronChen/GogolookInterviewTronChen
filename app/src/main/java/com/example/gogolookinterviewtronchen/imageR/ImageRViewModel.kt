@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import app.appworks.school.stylish.network.LoadApiStatus
 import com.example.gogolookinterviewtronchen.R
 import com.example.gogolookinterviewtronchen.data.AppResult
+import com.example.gogolookinterviewtronchen.data.SearchImage
 import com.example.gogolookinterviewtronchen.data.SearchResult
 import com.example.gogolookinterviewtronchen.data.source.GogolookRepository
 import com.example.gogolookinterviewtronchen.data.source.remote.GogolookRemoteDataSource.getSearchResult
@@ -24,6 +25,8 @@ class ImageRViewModel(
     var searchString : String? = null
 
     val searchItem = MutableLiveData<SearchResult>()
+
+    var searchImage = MutableLiveData<List<SearchImage>>()
 
     // status: The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<LoadApiStatus>()
