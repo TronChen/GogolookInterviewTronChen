@@ -53,6 +53,17 @@ class ImageRFragment : Fragment() {
 
         switchLayoutManager(binding.imageRrec)
 
+        binding.layoutSwipeRefreshHome.setOnRefreshListener {
+            viewModel.refresh()
+        }
+
+        viewModel.refreshStatus.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                binding.layoutSwipeRefreshHome.isRefreshing = it
+            }
+        })
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -60,11 +71,12 @@ class ImageRFragment : Fragment() {
     private fun switchLayoutManager(recyclerView: RecyclerView){
         val activity = activity as MainActivity
 
+        activity.textSearch.text = viewModel.searchString
+
         activity.gridLayout.setOnClickListener {
             it.visibility = View.GONE
             activity.linearLayout.visibility = View.VISIBLE
             recyclerView.layoutManager = GridLayoutManager(GogolookApplication.INSTANCE.applicationContext, 2)
-
         }
 
         activity.linearLayout.setOnClickListener {

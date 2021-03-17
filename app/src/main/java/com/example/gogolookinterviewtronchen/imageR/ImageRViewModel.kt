@@ -64,6 +64,7 @@ class ImageRViewModel(
 
 
     init {
+        searchString = inputString
         getSearchResult(true,inputString)
     }
 
@@ -98,6 +99,12 @@ class ImageRViewModel(
                 }
             }
             _refreshStatus.value = false
+        }
+    }
+
+    fun refresh() {
+        if (status.value != LoadApiStatus.LOADING) {
+            getSearchResult(true,inputString)
         }
     }
 
