@@ -64,6 +64,7 @@ class ImageRFragment : Fragment() {
             it.visibility = View.GONE
             activity.linearLayout.visibility = View.VISIBLE
             recyclerView.layoutManager = GridLayoutManager(GogolookApplication.INSTANCE.applicationContext, 2)
+
         }
 
         activity.linearLayout.setOnClickListener {
