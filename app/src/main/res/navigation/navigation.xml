@@ -15,4 +15,14 @@
         android:name="com.example.gogolookinterviewtronchen.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" /><action android:id="@+id/action_global_homeFragment" app:destination="@id/homeFragment"/><action android:id="@+id/action_global_searchFragment" app:destination="@id/searchFragment"/>
+    <fragment
+        android:id="@+id/imageRFragment"
+        android:name="com.example.gogolookinterviewtronchen.imageR.ImageRFragment"
+        android:label="fragment_image_r"
+        tools:layout="@layout/fragment_image_r" >
+        <argument
+            android:name="searchProperties"
+            app:argType="string" />
+    </fragment>
+    <action android:id="@+id/action_global_imageRFragment" app:destination="@id/imageRFragment" />
 </navigation>

@@ -8,6 +8,11 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'kotlin-android-extensions'
+}
+
+androidExtensions {
+    experimental = true
 }
 
 android {
@@ -15,6 +20,9 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
+
+        buildConfigField("Boolean", "LOGGER_VISIABLE", "false")
+
         applicationId "com.example.gogolookinterviewtronchen"
         minSdkVersion 21
         targetSdkVersion 30

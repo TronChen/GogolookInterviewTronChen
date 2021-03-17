@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.currentFragmentType.value = when(navController.currentDestination?.id) {
                 R.id.homeFragment -> CurrentFragmentType.HOME
                 R.id.searchFragment -> CurrentFragmentType.SEARCH
+                R.id.imageRFragment -> CurrentFragmentType.IMAGE_RESULT
                 else -> viewModel.currentFragmentType.value
             }
         }

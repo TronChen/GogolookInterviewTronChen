@@ -28,15 +28,20 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
-                android:layout_width="wrap_content"
+                android:id="@+id/editTextSearch"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:maxLines="1"
+                android:text="@={viewModel.inputString}"
+                android:inputType="text"
+                android:imeOptions="actionSearch"
                 android:background="@android:color/transparent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="20dp"
-                android:inputType="textPersonName"
-                android:hint="Search pictures" />
+                android:hint="Search pictures">
+                <requestFocus />
+            </EditText>
         </androidx.cardview.widget.CardView>
 
 
