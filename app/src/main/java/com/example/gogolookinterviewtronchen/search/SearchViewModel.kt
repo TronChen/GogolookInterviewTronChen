@@ -9,6 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import java.util.*
 
 class SearchViewModel (private val repository: GogolookRepository
 ) : ViewModel()  {
@@ -23,10 +24,6 @@ class SearchViewModel (private val repository: GogolookRepository
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
 
-    /**
-     * When the [ViewModel] is finished, we cancel our coroutine [viewModelJob], which tells the
-     * Retrofit service to stop.
-     */
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -45,6 +42,13 @@ class SearchViewModel (private val repository: GogolookRepository
     fun addHistory(history: History){
         coroutineScope.launch {
             repository.insertHistory(history)
+        }
+    }
+
+    fun updateHistory(history: History) {
+        history.date = Calendar.getInstance().time.time
+        coroutineScope.launch {
+            repository.updateHistory(history)
         }
     }
 }

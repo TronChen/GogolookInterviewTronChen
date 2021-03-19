@@ -35,13 +35,20 @@ class SearchFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
+        val adapter = SearchAdapter(SearchAdapter.HistoryOnItemClickListener{
+            it.inputString?.let { it1 -> sendMessage(it1) }
+            viewModel.updateHistory(it)
+            hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
+        })
+
+        binding.historyRec.adapter = adapter
+
         openSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
 
         binding.editTextSearch.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     sendMessage(viewModel.inputString.value!!)
-//                    saveToHistory(viewModel.inputString.value!!)
                     viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
                     hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
@@ -50,12 +57,18 @@ class SearchFragment : Fragment() {
             }
         }
 
-        viewModel.inputString.observe(viewLifecycleOwner, Observer {
-//            Log.d("Tron",it)
-//            UserManager.history = it
-        })
+        binding.textClear.setOnClickListener {
+            viewModel.clearHistory()
+        }
 
         viewModel.histories.observe(viewLifecycleOwner, Observer { it ->
+            if(it.isNullOrEmpty()) {
+                binding.textClear.visibility = View.GONE
+            }else{
+                binding.textClear.visibility = View.VISIBLE
+            }
+
+            adapter.submitList(it)
             it.forEach {history ->
                 Log.d("Histories", history.inputString.toString())
             }
@@ -86,19 +99,6 @@ class SearchFragment : Fragment() {
 
     private fun sendMessage(inputString: String){
         findNavController().navigate(SearchFragmentDirections.actionGlobalImageRFragment(inputString))
-    }
-
-    private fun saveToHistory(inputString: String){
-//
-//        val history = mutableListOf<String>()
-//
-//        if (UserManager.history == null){
-//            UserManager.history = inputString
-//        }else{
-//            history.add(inputString)
-//            history.add(UserManager.history!!)
-//            UserManager.history = history.toString().filter { it != '[' && it != ']' && it != ',' }.split("").toList().toString()
-//        }
     }
 
 

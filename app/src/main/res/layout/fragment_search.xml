@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable
             name="viewModel"
             type="com.example.gogolookinterviewtronchen.search.SearchViewModel" />
@@ -14,8 +16,33 @@
         android:layout_height="match_parent"
         tools:context=".search.SearchFragment">
 
+        <TextView
+            android:id="@+id/textClear"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:text="Clear History"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:background="@color/grey"
+            android:textColor="#898989"
+            app:layout_constraintEnd_toEndOf="@+id/historyRec"
+            app:layout_constraintStart_toStartOf="@+id/historyRec"
+            app:layout_constraintTop_toBottomOf="@+id/historyRec" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historyRec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@+id/cardSearch"
+            app:layout_constraintStart_toStartOf="@+id/cardSearch"
+            app:layout_constraintTop_toBottomOf="@+id/cardSearch"
+            tools:listitem="@layout/item_list_history" />
+
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
+            android:id="@+id/cardSearch"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"

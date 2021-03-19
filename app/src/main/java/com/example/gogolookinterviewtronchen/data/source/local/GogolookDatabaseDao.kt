@@ -22,9 +22,8 @@ interface GogolookDatabaseDao {
     @Query("DELETE FROM search_history")
     fun clear()
 
-    @Query("SELECT * FROM search_history ORDER BY date ASC")
-    fun getAllHistory():
-            LiveData<List<History>>
+    @Query("SELECT * FROM search_history ORDER BY date DESC")
+    fun getAllHistory(): LiveData<List<History>>
 
 
 }

@@ -6,8 +6,8 @@ import java.util.*
 
 @Entity(tableName = "search_history", primaryKeys = ["date"])
 class History(
-    val inputString: String? = null,
+    var inputString: String? = null,
     @ColumnInfo(name = "date")
-    val date: Long? = Calendar.getInstance().time.time
+    var date: Long? = Calendar.getInstance().time.time
 ) {
 }
