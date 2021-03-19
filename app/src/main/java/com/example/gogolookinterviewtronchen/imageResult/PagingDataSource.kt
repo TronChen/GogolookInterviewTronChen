@@ -39,7 +39,7 @@ class PagingDataSource(val inputString: String) : PageKeyedDataSource<String, Se
      * Initial load api
      */
     override fun loadInitial(params: LoadInitialParams<String>, callback: LoadInitialCallback<String, SearchImage>) {
-//        Logger.d("[${type.value}] loadInitial") // open it if you want to observe status
+
 
         coroutineScope.launch {
 
@@ -51,8 +51,8 @@ class PagingDataSource(val inputString: String) : PageKeyedDataSource<String, Se
                 is AppResult.Success -> {
                     _errorInitialLoad.value = null
                     _statusInitialLoad.value = LoadApiStatus.DONE
-//                    Log.d("Tron","[${type.value}] loadInitial.result=${result.data.products}") // open it if you want to observe status
-                    Log.d("Tron","[] loadInitial.paging=${page}") // open it if you want to observe status
+
+                    Log.d("Tron","loadInitial.paging=${page}") // open it if you want to observe status
                     result.data.hits?.let { callback.onResult(it, null, page ++.toString()) }
                 }
                 is AppResult.Fail -> {
@@ -75,16 +75,14 @@ class PagingDataSource(val inputString: String) : PageKeyedDataSource<String, Se
      * After initial load, it will according to paging key to load api
      */
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, SearchImage>) {
-//        Logger.d("[${type.value}] loadAfter.key=${params.key}") // open it if you want to observe status
 
         coroutineScope.launch {
             val result = GogolookApplication.INSTANCE.repository
                 .getSearchResult(inputString = inputString, page = page.toString())
             when (result) {
                 is AppResult.Success -> {
-//                    Logger.d("[${type.value}] loadAfter.result=${result.data}") // open it if you want to observe status
-//                    Logger.d("[${type.value}] loadAfter.paging=${result.data.paging}") // // open it if you want to observe status
-                    Log.d("Tron","[] loadAfter.paging=${page}") // open it if you want to observe status
+
+                    Log.d("Tron","loadAfter.paging=${page}") // open it if you want to observe status
                     result.data.hits?.let { callback.onResult(it, page ++ .toString()) }
                 }
             }

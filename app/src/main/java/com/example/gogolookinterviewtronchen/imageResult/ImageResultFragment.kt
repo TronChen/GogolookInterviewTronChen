@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import app.appworks.school.stylish.network.LoadApiStatus
 import com.example.gogolookinterviewtronchen.GogolookApplication
 import com.example.gogolookinterviewtronchen.MainActivity
 import com.example.gogolookinterviewtronchen.databinding.FragmentImageResultBinding
@@ -46,23 +47,20 @@ class ImageResultFragment : Fragment() {
             viewModel.searchImage.value = it.hits
         })
 
-//        viewModel.searchImage.observe(viewLifecycleOwner, Observer {
-//            adapter.submitList(it)
-//        })
-
-        viewModel.pagingDataProducts.observe(viewLifecycleOwner, Observer {
+        viewModel.pagingDataSearchImage.observe(viewLifecycleOwner, Observer {
             (binding.imageResultRec.adapter as ImageResultAdapter).submitList(it)
         })
 
         switchLayoutManager(binding.imageResultRec)
 
-        binding.layoutSwipeRefreshHome.setOnRefreshListener {
+        binding.layoutSwipeRefreshImageResult.setOnRefreshListener {
             viewModel.refresh()
         }
 
-        viewModel.refreshStatus.observe(viewLifecycleOwner, Observer {
+        viewModel.status.observe(viewLifecycleOwner, Observer {
             it?.let {
-                binding.layoutSwipeRefreshHome.isRefreshing = it
+                if (it != LoadApiStatus.LOADING)
+                    binding.layoutSwipeRefreshImageResult.isRefreshing = false
             }
         })
 

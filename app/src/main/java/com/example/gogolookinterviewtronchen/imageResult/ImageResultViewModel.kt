@@ -31,7 +31,7 @@ class ImageResultViewModel(
 
     private val sourceFactory = PagingDataSourceFactory(inputString)
 
-    val pagingDataProducts: LiveData<PagedList<SearchImage>> = sourceFactory.toLiveData(6, null)
+    val pagingDataSearchImage: LiveData<PagedList<SearchImage>> = sourceFactory.toLiveData(20, null)
 
     // Handle load api status
     val status: LiveData<LoadApiStatus> = Transformations.switchMap(sourceFactory.sourceLiveData) {
@@ -42,13 +42,6 @@ class ImageResultViewModel(
     val error: LiveData<String> = Transformations.switchMap(sourceFactory.sourceLiveData) {
         it.errorInitialLoad
     }
-
-    // status for the loading icon of swl
-    private val _refreshStatus = MutableLiveData<Boolean>()
-
-    val refreshStatus: LiveData<Boolean>
-        get() = _refreshStatus
-
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -68,48 +61,7 @@ class ImageResultViewModel(
 
     init {
         searchString = inputString
-//        getSearchResult(true,inputString)
     }
-
-//    private fun getSearchResult(isInitial: Boolean = false , inputString: String) {
-//
-//        coroutineScope.launch {
-//
-//            if (isInitial) _status.value = LoadApiStatus.LOADING
-//
-//            val result = repository.getSearchResult(inputString)
-//
-//            searchItem.value = when (result) {
-//                is AppResult.Success -> {
-//                    _error.value = null
-//                    if (isInitial) _status.value = LoadApiStatus.DONE
-//                    result.data
-//                }
-//                is AppResult.Fail -> {
-//                    _error.value = result.error
-//                    if (isInitial) _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                is AppResult.Error -> {
-//                    _error.value = result.exception.toString()
-//                    if (isInitial) _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//                else -> {
-//                    _error.value = Util.getString(R.string.you_know_nothing)
-//                    if (isInitial) _status.value = LoadApiStatus.ERROR
-//                    null
-//                }
-//            }
-//            _refreshStatus.value = false
-//        }
-//    }
-
-//    fun refresh() {
-//        if (status.value != LoadApiStatus.LOADING) {
-//            getSearchResult(true,inputString)
-//        }
-//    }
 
     fun refresh() {
         if (status.value != LoadApiStatus.LOADING) {
