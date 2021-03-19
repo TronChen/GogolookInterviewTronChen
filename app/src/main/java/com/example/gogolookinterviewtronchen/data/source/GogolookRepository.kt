@@ -17,7 +17,7 @@ interface GogolookRepository {
 
     suspend fun updateHistory(history: History)
 
-    suspend fun removeHistory(date: Date)
+    suspend fun removeHistory(date: Long)
 
     suspend fun clearHistory()
 }

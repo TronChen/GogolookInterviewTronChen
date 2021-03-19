@@ -32,7 +32,7 @@ class GogolookLocalDataSource(val context: Context) : GogolookDataSource {
         }
     }
 
-    override suspend fun removeHistory(date: Date) {
+    override suspend fun removeHistory(date: Long) {
         withContext(Dispatchers.IO) {
             GogolookDatabase.getInstance(context).gogolookDatabaseDao.delete(date)
         }

@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import com.example.gogolookinterviewtronchen.data.History
-import java.util.*
 
 @Dao
 interface GogolookDatabaseDao {
@@ -18,7 +17,7 @@ interface GogolookDatabaseDao {
     fun update(history: History)
 
     @Query("DELETE from search_history WHERE date = :date ")
-    fun delete(date: Date)
+    fun delete(date: Long)
 
     @Query("DELETE FROM search_history")
     fun clear()

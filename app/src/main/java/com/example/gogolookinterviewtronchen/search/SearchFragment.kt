@@ -14,8 +14,10 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.gogolookinterviewtronchen.GogolookApplication
 import com.example.gogolookinterviewtronchen.R
+import com.example.gogolookinterviewtronchen.data.History
 import com.example.gogolookinterviewtronchen.databinding.FragmentSearchBinding
 import com.example.gogolookinterviewtronchen.ext.getVmFactory
+import java.util.*
 import java.util.stream.Collectors.toList
 
 
@@ -39,7 +41,8 @@ class SearchFragment : Fragment() {
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     sendMessage(viewModel.inputString.value!!)
-                    saveToHistory(viewModel.inputString.value!!)
+//                    saveToHistory(viewModel.inputString.value!!)
+                    viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
                     hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
                 }
@@ -52,7 +55,11 @@ class SearchFragment : Fragment() {
 //            UserManager.history = it
         })
 
-        UserManager.history?.let { Log.d("UserManager", it) }
+        viewModel.histories.observe(viewLifecycleOwner, Observer { it ->
+            it.forEach {history ->
+                Log.d("Histories", history.inputString.toString())
+            }
+        })
 
         // Inflate the layout for this fragment
         return binding.root

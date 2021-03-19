@@ -45,7 +45,7 @@ object GogolookRemoteDataSource : GogolookDataSource {
         TODO("Not yet implemented")
     }
 
-    override suspend fun removeHistory(date: Date) {
+    override suspend fun removeHistory(date: Long) {
         TODO("Not yet implemented")
     }
 

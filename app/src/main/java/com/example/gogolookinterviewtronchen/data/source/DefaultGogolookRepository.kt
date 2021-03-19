@@ -28,7 +28,7 @@ class DefaultGogolookRepository(private val remoteDataSource: GogolookDataSource
        return localDataSource.updateHistory(history)
     }
 
-    override suspend fun removeHistory(date: Date) {
+    override suspend fun removeHistory(date: Long) {
         return localDataSource.removeHistory(date)
     }
 
