@@ -9,4 +9,7 @@ class SearchViewModel (private val repository: GogolookRepository
 
     val inputString = MutableLiveData<String>()
 
+    fun navigateToImageResult(){
+        inputString.value = null
+    }
 }

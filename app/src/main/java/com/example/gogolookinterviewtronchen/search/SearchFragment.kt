@@ -16,6 +16,7 @@ import com.example.gogolookinterviewtronchen.GogolookApplication
 import com.example.gogolookinterviewtronchen.R
 import com.example.gogolookinterviewtronchen.databinding.FragmentSearchBinding
 import com.example.gogolookinterviewtronchen.ext.getVmFactory
+import java.util.stream.Collectors.toList
 
 
 class SearchFragment : Fragment() {
@@ -38,6 +39,7 @@ class SearchFragment : Fragment() {
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
                     sendMessage(viewModel.inputString.value!!)
+                    saveToHistory(viewModel.inputString.value!!)
                     hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
                 }
@@ -46,14 +48,19 @@ class SearchFragment : Fragment() {
         }
 
         viewModel.inputString.observe(viewLifecycleOwner, Observer {
-            Log.d("Tron",it)
-            UserManager.history = it
+//            Log.d("Tron",it)
+//            UserManager.history = it
         })
 
         UserManager.history?.let { Log.d("UserManager", it) }
 
         // Inflate the layout for this fragment
         return binding.root
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.navigateToImageResult()
     }
 
     private fun openSoftKeyboard(context: Context, view: View) {
@@ -73,6 +80,20 @@ class SearchFragment : Fragment() {
     private fun sendMessage(inputString: String){
         findNavController().navigate(SearchFragmentDirections.actionGlobalImageRFragment(inputString))
     }
+
+    private fun saveToHistory(inputString: String){
+//
+//        val history = mutableListOf<String>()
+//
+//        if (UserManager.history == null){
+//            UserManager.history = inputString
+//        }else{
+//            history.add(inputString)
+//            history.add(UserManager.history!!)
+//            UserManager.history = history.toString().filter { it != '[' && it != ']' && it != ',' }.split("").toList().toString()
+//        }
+    }
+
 
 
 
