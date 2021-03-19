@@ -6,14 +6,14 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.gogolookinterviewtronchen.imageR.ImageRViewModel" />
+            type="com.example.gogolookinterviewtronchen.imageResult.ImageResultViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey"
-        tools:context=".imageR.ImageRFragment">
+        tools:context=".imageResult.ImageResultFragment">
 
 
 
@@ -29,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/imageRrec"
+                android:id="@+id/imageResultRec"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

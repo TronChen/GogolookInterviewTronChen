@@ -1,4 +1,4 @@
-package com.example.gogolookinterviewtronchen.imageR
+package com.example.gogolookinterviewtronchen.imageResult
 
 import android.os.Bundle
 import android.util.Log
@@ -13,15 +13,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gogolookinterviewtronchen.GogolookApplication
 import com.example.gogolookinterviewtronchen.MainActivity
-import com.example.gogolookinterviewtronchen.R
-import com.example.gogolookinterviewtronchen.databinding.FragmentImageRBinding
+import com.example.gogolookinterviewtronchen.databinding.FragmentImageResultBinding
 import com.example.gogolookinterviewtronchen.ext.getVmFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
-class ImageRFragment : Fragment() {
+class ImageResultFragment : Fragment() {
 
-    private val viewModel by viewModels<ImageRViewModel> { getVmFactory(
-        ImageRFragmentArgs.fromBundle(
+    private val viewModel by viewModels<ImageResultViewModel> { getVmFactory(
+        ImageResultFragmentArgs.fromBundle(
             requireArguments()
         ).searchProperties)
     }
@@ -31,14 +30,14 @@ class ImageRFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val binding = FragmentImageRBinding.inflate(inflater, container, false)
+        val binding = FragmentImageResultBinding.inflate(inflater, container, false)
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val adapter = ImageRAdapter()
+        val adapter = ImageResultAdapter()
 
-        binding.imageRrec.adapter = adapter
+        binding.imageResultRec.adapter = adapter
 
         viewModel.searchString?.let { Log.d("Tron", it) }
 
@@ -47,11 +46,15 @@ class ImageRFragment : Fragment() {
             viewModel.searchImage.value = it.hits
         })
 
-        viewModel.searchImage.observe(viewLifecycleOwner, Observer {
-            adapter.submitList(it)
+//        viewModel.searchImage.observe(viewLifecycleOwner, Observer {
+//            adapter.submitList(it)
+//        })
+
+        viewModel.pagingDataProducts.observe(viewLifecycleOwner, Observer {
+            (binding.imageResultRec.adapter as ImageResultAdapter).submitList(it)
         })
 
-        switchLayoutManager(binding.imageRrec)
+        switchLayoutManager(binding.imageResultRec)
 
         binding.layoutSwipeRefreshHome.setOnRefreshListener {
             viewModel.refresh()

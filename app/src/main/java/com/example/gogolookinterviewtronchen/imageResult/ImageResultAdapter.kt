@@ -1,16 +1,17 @@
-package com.example.gogolookinterviewtronchen.imageR
+package com.example.gogolookinterviewtronchen.imageResult
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gogolookinterviewtronchen.data.SearchImage
 import com.example.gogolookinterviewtronchen.databinding.ItemListImageBinding
 
 
-class ImageRAdapter()
-    : androidx.recyclerview.widget.ListAdapter<SearchImage, RecyclerView.ViewHolder>(ImageRDiffCallback()) {
+class ImageResultAdapter()
+    : PagedListAdapter<SearchImage, RecyclerView.ViewHolder>(ImageRDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return ImageRViewHolder.from(parent)
@@ -32,9 +33,8 @@ class ImageRAdapter()
             return oldItem == newItem
         }
 
-        @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(oldItem: SearchImage, newItem: SearchImage): Boolean {
-            return oldItem == newItem
+            return oldItem.id == newItem.id
         }
     }
 

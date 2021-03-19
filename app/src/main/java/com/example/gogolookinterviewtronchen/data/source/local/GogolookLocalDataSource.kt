@@ -7,7 +7,7 @@ import com.example.gogolookinterviewtronchen.data.source.GogolookDataSource
 
 class GogolookLocalDataSource(val context: Context) : GogolookDataSource {
 
-    override suspend fun getSearchResult(inputString: String): AppResult<SearchResult> {
+    override suspend fun getSearchResult(inputString: String, page: String?): AppResult<SearchResult> {
         TODO("Not yet implemented")
     }
 

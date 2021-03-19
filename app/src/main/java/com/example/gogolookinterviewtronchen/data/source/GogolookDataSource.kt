@@ -6,5 +6,5 @@ import com.example.gogolookinterviewtronchen.data.SearchResult
 
 interface GogolookDataSource {
 
-    suspend fun getSearchResult(inputString: String): AppResult<SearchResult>
+    suspend fun getSearchResult(inputString: String, page: String?): AppResult<SearchResult>
 }

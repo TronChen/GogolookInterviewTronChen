@@ -47,8 +47,10 @@ class SearchFragment : Fragment() {
 
         viewModel.inputString.observe(viewLifecycleOwner, Observer {
             Log.d("Tron",it)
+            UserManager.history = it
         })
 
+        UserManager.history?.let { Log.d("UserManager", it) }
 
         // Inflate the layout for this fragment
         return binding.root

@@ -46,7 +46,7 @@ private val retrofit = Retrofit.Builder()
 interface GogolookApiService {
 
     @GET("https://$HOST_NAME/api/")
-    suspend fun getSearchResult(@Query("key") key : String = KEY , @Query("q") inputString : String): SearchResult
+    suspend fun getSearchResult(@Query("key") key : String = KEY , @Query("q") inputString : String, @Query("page") page: String? = null): SearchResult
 
 }
 

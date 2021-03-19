@@ -10,15 +10,14 @@ import com.example.gogolookinterviewtronchen.util.Util.isInternetConnected
 
 object GogolookRemoteDataSource : GogolookDataSource {
 
-    override suspend fun getSearchResult(inputString: String): AppResult<SearchResult> {
-
+    override suspend fun getSearchResult(inputString: String, page: String?): AppResult<SearchResult> {
         if (!isInternetConnected()) {
             return AppResult.Fail(getString(R.string.internet_not_connected))
         }
 
         return try {
             // this will run on a thread managed by Retrofit
-            val listResult = GogolookApi.retrofitService.getSearchResult(inputString = inputString)
+            val listResult = GogolookApi.retrofitService.getSearchResult(inputString = inputString , page = page)
 
             listResult.error?.let {
                 return AppResult.Fail(it)

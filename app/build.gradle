@@ -109,4 +109,7 @@ dependencies {
 
     // RecyclerView
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime-ktx:2.1.2"
 }

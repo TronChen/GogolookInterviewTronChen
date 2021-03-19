@@ -8,7 +8,7 @@ class DefaultGogolookRepository(private val remoteDataSource: GogolookDataSource
                                 private val localDataSource: GogolookDataSource
 ) : GogolookRepository {
 
-    override suspend fun getSearchResult(inputString: String): AppResult<SearchResult>{
-        return GogolookRemoteDataSource.getSearchResult(inputString)
+    override suspend fun getSearchResult(inputString: String, page: String): AppResult<SearchResult>{
+        return GogolookRemoteDataSource.getSearchResult(inputString , page)
     }
 }
