@@ -22,7 +22,7 @@ Function
 3.Implement empty state when result is empty
 <div align="left">
   <pre>
-<img width="240" height="475" src="https://firebasestorage.googleapis.com/v0/b/familytree-7b7ab.appspot.com/o/Screenshot_1616313987.png?alt=media&token=5ef41db5-b15f-4024-9b93-48f78c535b95"> 
+<img width="240" height="475" src="https://firebasestorage.googleapis.com/v0/b/familytree-7b7ab.appspot.com/o/Screenshot_1616344742.png?alt=media&token=a029efb7-7428-4d41-b785-656c5f75b8e0"> 
 </div>
 
 聯絡資訊
