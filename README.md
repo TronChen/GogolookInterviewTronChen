@@ -5,7 +5,7 @@ Homework for Gogolook interview
 Function
 ---
 
-1.Searching : Let user to search for image from pixabay , user can 
+1.Searching : Let user to search for image from pixabay , user can search via history
 <div align="left">
   <pre>
 <img width="240" height="475" src="https://firebasestorage.googleapis.com/v0/b/familytree-7b7ab.appspot.com/o/Screenshot_1616313883.png?alt=media&token=3a89095f-f097-46ba-919f-c7d7ca9dce47"> <img width="240" height="475" src="https://firebasestorage.googleapis.com/v0/b/familytree-7b7ab.appspot.com/o/Screenshot_1616313961.png?alt=media&token=54eb94f0-ee65-467d-b95f-708d0d5a1580">
