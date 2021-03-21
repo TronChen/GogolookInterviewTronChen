@@ -39,7 +39,7 @@
             app:layout_constraintEnd_toEndOf="@+id/cardSearch"
             app:layout_constraintStart_toStartOf="@+id/cardSearch"
             app:layout_constraintTop_toBottomOf="@+id/cardSearch"
-            android:overScrollMode="never"
+            android:overScrollMode="always"
             tools:listitem="@layout/item_list_history" />
 
         <androidx.cardview.widget.CardView
