@@ -1,5 +1,6 @@
 package com.example.gogolookinterviewtronchen.search
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -16,7 +17,7 @@ class SearchViewModel (private val repository: GogolookRepository
 
     val inputString = MutableLiveData<String>()
 
-    val histories : LiveData<List<History>> = repository.getAllHistory()
+    var histories : LiveData<List<History>> = repository.getAllHistory()
 
     // Create a Coroutine scope using a job to be able to cancel when needed
     private var viewModelJob = Job()
@@ -42,13 +43,6 @@ class SearchViewModel (private val repository: GogolookRepository
     fun addHistory(history: History){
         coroutineScope.launch {
             repository.insertHistory(history)
-        }
-    }
-
-    fun updateHistory(history: History) {
-        history.date = Calendar.getInstance().time.time
-        coroutineScope.launch {
-            repository.updateHistory(history)
         }
     }
 }

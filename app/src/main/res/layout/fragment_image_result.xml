@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="com.example.gogolookinterviewtronchen.imageResult.ImageResultViewModel" />
@@ -14,8 +15,6 @@
         android:layout_height="match_parent"
         android:background="@color/grey"
         tools:context=".imageResult.ImageResultFragment">
-
-
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/layout_swipe_refresh_image_result"
@@ -40,13 +39,54 @@
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ProgressBar
+            android:id="@+id/progressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:setupApiStatus="@{viewModel.status}"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:setupApiStatus="@{viewModel.status}" />
+
+        <ImageView
+            android:id="@+id/imageEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="@{viewModel.imageEmpty == true ? View.VISIBLE : View.GONE}"
+            app:srcCompat="@drawable/event_e" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/no_results_found"
+            android:textColor="@color/dark_grey"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{viewModel.imageEmpty == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toTopOf="@+id/layout_swipe_refresh_image_result" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="56dp"
+            android:gravity="center"
+            android:textColor="@color/dark_grey"
+            android:text="@string/try_adjusting_your_search_to_find_what_you_re_looking_for"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:visibility="@{viewModel.imageEmpty == true ? View.VISIBLE : View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

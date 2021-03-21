@@ -42,12 +42,14 @@ class ImageResultFragment : Fragment() {
 
         viewModel.searchString?.let { Log.d("Tron", it) }
 
-        viewModel.searchItem.observe(viewLifecycleOwner, Observer {
-            Log.d("Result", it.hits.toString())
-            viewModel.searchImage.value = it.hits
-        })
+//        viewModel.searchItem.observe(viewLifecycleOwner, Observer {
+//            Log.d("Result", it.hits.toString())
+//            viewModel.searchImage.value = it.hits
+//        })
 
-        viewModel.pagingDataSearchImage.observe(viewLifecycleOwner, Observer {
+        viewModel.pagingDataSearchImage.observe(viewLifecycleOwner, Observer { it ->
+
+            Log.d("pagingDataSearchImage",  it.toString() )
             (binding.imageResultRec.adapter as ImageResultAdapter).submitList(it)
         })
 

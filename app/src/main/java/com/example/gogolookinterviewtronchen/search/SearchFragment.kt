@@ -37,7 +37,6 @@ class SearchFragment : Fragment() {
 
         val adapter = SearchAdapter(SearchAdapter.HistoryOnItemClickListener{
             it.inputString?.let { it1 -> sendMessage(it1) }
-            viewModel.updateHistory(it)
             hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
         })
 
@@ -69,9 +68,6 @@ class SearchFragment : Fragment() {
             }
 
             adapter.submitList(it)
-            it.forEach {history ->
-                Log.d("Histories", history.inputString.toString())
-            }
         })
 
         // Inflate the layout for this fragment

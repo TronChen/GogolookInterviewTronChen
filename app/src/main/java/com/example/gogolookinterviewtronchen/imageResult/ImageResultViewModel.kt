@@ -25,11 +25,13 @@ class ImageResultViewModel(
 
     var searchString : String? = null
 
-    val searchItem = MutableLiveData<SearchResult>()
+//    val searchItem = MutableLiveData<SearchResult>()
+//
+//    var searchImage = MutableLiveData<List<SearchImage>>()
 
-    var searchImage = MutableLiveData<List<SearchImage>>()
+    var imageEmpty = MutableLiveData<Boolean>()
 
-    private val sourceFactory = PagingDataSourceFactory(inputString)
+    private val sourceFactory = PagingDataSourceFactory(inputString , this)
 
     val pagingDataSearchImage: LiveData<PagedList<SearchImage>> = sourceFactory.toLiveData(20, null)
 

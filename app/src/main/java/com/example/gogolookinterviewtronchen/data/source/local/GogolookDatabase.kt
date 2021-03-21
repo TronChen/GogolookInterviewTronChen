@@ -61,11 +61,9 @@ abstract class GogolookDatabase : RoomDatabase() {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         GogolookDatabase::class.java,
-                        "stylish_database"
+                        "gogolook_database"
                     )
                         // Wipes and rebuilds instead of migrating if no Migration object.
-                        // Migration is not part of this lesson. You can learn more about
-                        // migration with Room in this blog post:
                         // https://medium.com/androiddevelopers/understanding-migrations-with-room-f01e04b07929
                         .fallbackToDestructiveMigration()
                         .build()

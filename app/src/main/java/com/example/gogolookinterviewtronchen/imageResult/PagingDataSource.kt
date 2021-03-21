@@ -15,7 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class PagingDataSource(val inputString: String) : PageKeyedDataSource<String, SearchImage>() {
+class PagingDataSource(val inputString: String , val viewModel: ImageResultViewModel) : PageKeyedDataSource<String, SearchImage>() {
 
     // init load status for observe
 
@@ -49,6 +49,8 @@ class PagingDataSource(val inputString: String) : PageKeyedDataSource<String, Se
                 .getSearchResult(inputString = inputString , page = page.toString())
             when (result) {
                 is AppResult.Success -> {
+                    Log.d("ImageResult", result.data.toString())
+                    viewModel.imageEmpty.value = result.data.total == 0
                     _errorInitialLoad.value = null
                     _statusInitialLoad.value = LoadApiStatus.DONE
 
