@@ -36,7 +36,7 @@ class SearchViewModel (private val repository: GogolookRepository
     }
 
     fun navigateToImageResult(){
-        inputString.value = null
+        inputString.value = ""
     }
 
     fun clearHistory() {

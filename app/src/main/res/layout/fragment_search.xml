@@ -11,6 +11,10 @@
             type="com.example.gogolookinterviewtronchen.search.SearchViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,12 +24,13 @@
             android:id="@+id/textClear"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/clear_history"
-            android:gravity="center"
-            android:textSize="20sp"
+            android:layout_marginBottom="8dp"
             android:background="@color/grey"
+            android:gravity="center"
+            android:text="@string/clear_history"
             android:textColor="#898989"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/historyRec"
             app:layout_constraintStart_toStartOf="@+id/historyRec"
             app:layout_constraintTop_toBottomOf="@+id/historyRec" />
@@ -34,12 +39,13 @@
             android:id="@+id/historyRec"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintEnd_toEndOf="@+id/cardSearch"
-            app:layout_constraintStart_toStartOf="@+id/cardSearch"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardSearch"
-            android:overScrollMode="never"
             tools:listitem="@layout/item_list_history" />
 
         <androidx.cardview.widget.CardView
@@ -63,15 +69,16 @@
                 android:layout_marginEnd="20dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:hint="Search pictures"
+                android:hint="@string/search_pictures"
                 android:imeOptions="actionSearch"
                 android:inputType="text"
                 android:maxLines="1"
                 android:text="@={viewModel.inputString}">
-
-                <requestFocus />
+<!--                <requestFocus />-->
             </EditText>
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
 </layout>

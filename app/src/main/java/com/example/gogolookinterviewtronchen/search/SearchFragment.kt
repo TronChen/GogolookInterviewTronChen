@@ -42,19 +42,17 @@ class SearchFragment : Fragment() {
         })
 
         binding.historyRec.adapter = adapter
+        binding.historyRec.isNestedScrollingEnabled = false
 
         openSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
 
         binding.editTextSearch.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
-                    if (viewModel.inputString.value == null){
-                        sendMessage("")
-                        viewModel.addHistory(History(inputString = ""))
-                    }else{
-                        sendMessage(viewModel.inputString.value!!)
-                        viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
-                    }
+
+                    sendMessage(viewModel.inputString.value!!)
+                    viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
+
                     hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
                 }
@@ -98,7 +96,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun hideSoftKeyboard(context: Context, view: View){
-        view.requestFocus()
+        view.clearFocus()
         // hide the soft keyboard
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
