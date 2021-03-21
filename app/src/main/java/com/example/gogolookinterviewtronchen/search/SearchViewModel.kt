@@ -45,4 +45,12 @@ class SearchViewModel (private val repository: GogolookRepository
             repository.insertHistory(history)
         }
     }
+
+    fun updateHistory(history: History) {
+        history.date = Calendar.getInstance().time.time
+        coroutineScope.launch {
+            Log.d("AfterUpdateSearchDate", history.date.toString())
+            repository.updateHistory(history)
+        }
+    }
 }
