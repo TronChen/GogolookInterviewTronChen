@@ -17,11 +17,11 @@ object ServiceLocator {
         synchronized(this) {
             return repository
                 ?: repository
-                ?: createFamilyTreeRepository(context)
+                ?: createGogolookRepository(context)
         }
     }
 
-    private fun createFamilyTreeRepository(context: Context): GogolookRepository {
+    private fun createGogolookRepository(context: Context): GogolookRepository {
         return DefaultGogolookRepository(
             GogolookRemoteDataSource,
             createLocalDataSource(context)

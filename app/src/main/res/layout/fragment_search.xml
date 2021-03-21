@@ -4,6 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <import type="android.view.View"/>
+        <import type="android.text.TextUtils"/>
         <variable
             name="viewModel"
             type="com.example.gogolookinterviewtronchen.search.SearchViewModel" />
@@ -14,31 +16,62 @@
         android:layout_height="match_parent"
         tools:context=".search.SearchFragment">
 
+        <TextView
+            android:id="@+id/textClear"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/clear_history"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:background="@color/grey"
+            android:textColor="#898989"
+            app:layout_constraintEnd_toEndOf="@+id/historyRec"
+            app:layout_constraintStart_toStartOf="@+id/historyRec"
+            app:layout_constraintTop_toBottomOf="@+id/historyRec" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/historyRec"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@+id/cardSearch"
+            app:layout_constraintStart_toStartOf="@+id/cardSearch"
+            app:layout_constraintTop_toBottomOf="@+id/cardSearch"
+            android:overScrollMode="never"
+            tools:listitem="@layout/item_list_history" />
+
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardSearch"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             app:cardCornerRadius="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
-                android:layout_width="wrap_content"
+                android:id="@+id/editTextSearch"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:background="@android:color/transparent"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="20dp"
-                android:inputType="textPersonName"
-                android:hint="Search pictures" />
-        </androidx.cardview.widget.CardView>
+                android:layout_marginEnd="20dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:hint="Search pictures"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@={viewModel.inputString}">
 
+                <requestFocus />
+            </EditText>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
