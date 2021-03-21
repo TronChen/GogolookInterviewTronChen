@@ -48,8 +48,13 @@ class SearchFragment : Fragment() {
         binding.editTextSearch.setOnEditorActionListener { v, actionId, event ->
             return@setOnEditorActionListener when (actionId) {
                 EditorInfo.IME_ACTION_SEARCH -> {
-                    sendMessage(viewModel.inputString.value!!)
-                    viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
+                    if (viewModel.inputString.value == null){
+                        sendMessage("")
+                        viewModel.addHistory(History(inputString = ""))
+                    }else{
+                        sendMessage(viewModel.inputString.value!!)
+                        viewModel.addHistory(History(inputString = viewModel.inputString.value!!))
+                    }
                     hideSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
                     true
                 }

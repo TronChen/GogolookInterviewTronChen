@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.gogolookinterviewtronchen.data.History
 import com.example.gogolookinterviewtronchen.data.source.GogolookRepository
+import com.example.gogolookinterviewtronchen.imageResult.ImageResultViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -24,6 +25,10 @@ class SearchViewModel (private val repository: GogolookRepository
 
     // the Coroutine runs using the Main (UI) dispatcher
     private val coroutineScope = CoroutineScope(viewModelJob + Dispatchers.Main)
+
+    init {
+        inputString.value = ""
+    }
 
     override fun onCleared() {
         super.onCleared()
