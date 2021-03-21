@@ -42,6 +42,7 @@ class SearchFragment : Fragment() {
         })
 
         binding.historyRec.adapter = adapter
+        binding.historyRec.isNestedScrollingEnabled = false
 
         openSoftKeyboard(GogolookApplication.INSTANCE , binding.editTextSearch)
 
